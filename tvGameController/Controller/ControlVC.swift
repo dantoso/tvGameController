@@ -36,8 +36,10 @@ class ControlVC: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		advertiser.start()
-		joinSession()
+		if mcSession.connectedPeers.count < 1 {
+			advertiser.start()
+			joinSession()
+		}
 	}
 
 
