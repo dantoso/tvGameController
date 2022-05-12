@@ -18,6 +18,7 @@ class ControlVC: UIViewController {
 		view = SKView(frame: view.bounds)
 		
 		let scene = SKScene(size: view.bounds.size)
+		scene.scaleMode = .aspectFill
 		scene.addChild(Joystick(rect: scene.frame, vc: self))
 		
 		guard let view = view as? SKView else {return}
