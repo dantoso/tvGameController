@@ -23,7 +23,10 @@
 	<string></string>
 	<key>_mdv-hm._udp</key>
 	<string></string>
-	<key>Bonjour services with the following initialisation: _mdv-hm._tcp and _mdv-hm._udp</key>
-	<string></string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_mdv-hm._tcp</string>
+		<string>_mdv-hm._udp</string>
+	</array>
 </dict>
 </plist>
