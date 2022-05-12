@@ -126,7 +126,7 @@ extension Joystick {
 	
 	func sendVector() {
 		let string = NSCoder.string(for: vector)
-		guard let data = Data(base64Encoded: string) else {return}
+		let data = Data(string.utf8)
 		print("vector encoding successful!!")
 		vc.sendData(data)
 	}
