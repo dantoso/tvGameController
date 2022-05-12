@@ -6,7 +6,7 @@ class ControlVC: UIViewController {
 
 	var id: MCPeerID!
 	var mcSession: MCSession!
-	var advertiser: MCAdvertiserAssistant!
+	lazy var advertiser = MCAdvertiserAssistant(serviceType: "mdv-hm", discoveryInfo: nil, session: mcSession)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,9 +31,13 @@ class ControlVC: UIViewController {
 		view.preferredFramesPerSecond = 60
 		
 		view.presentScene(scene)
-		
+	}
+	
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		advertiser.start()
 		joinSession()
-		
 	}
 
 
