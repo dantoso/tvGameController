@@ -60,14 +60,22 @@
 			children = (
 				FBF82B7D282D743900F7FA05 /* AppDelegate.swift */,
 				FBF82B7F282D743900F7FA05 /* SceneDelegate.swift */,
-				FBF82B81282D743900F7FA05 /* ControlVC.swift */,
-				FBF82B93282D7A4000F7FA05 /* P2P.swift */,
+				FBF82B97282D8AB600F7FA05 /* Controller */,
 				FBF82B91282D784C00F7FA05 /* Joystick.swift */,
 				FBF82B86282D743A00F7FA05 /* Assets.xcassets */,
 				FBF82B88282D743A00F7FA05 /* LaunchScreen.storyboard */,
 				FBF82B8B282D743A00F7FA05 /* Info.plist */,
 			);
 			path = tvGameController;
+			sourceTree = "<group>";
+		};
+		FBF82B97282D8AB600F7FA05 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FBF82B81282D743900F7FA05 /* ControlVC.swift */,
+				FBF82B93282D7A4000F7FA05 /* P2P.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
