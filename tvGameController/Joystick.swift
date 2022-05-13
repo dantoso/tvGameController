@@ -75,7 +75,7 @@ final class Joystick: SKNode {
 		guard let touch = touches.first,
 		let touchTime = self.touchTime else {return}
 		
-		guard CACurrentMediaTime() - touchTime > 0.05 else {return}
+		guard CACurrentMediaTime() - touchTime > 0.0001 else {return}
 		
 		touchLocation = touch.location(in: self)
 		vector = CGVector(dx: xDistance, dy: yDistance)
@@ -85,28 +85,28 @@ final class Joystick: SKNode {
 	}
 	
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		guard let touchTime = self.touchTime else {
-			reset()
-			return
-		}
-		guard CACurrentMediaTime() - touchTime > 0.05 else {
-			reset()
-			return
-		}
+//		guard let touchTime = self.touchTime else {
+//			reset()
+//			return
+//		}
+//		guard CACurrentMediaTime() - touchTime > 0.05 else {
+//			reset()
+//			return
+//		}
 		vector = CGVector(dx: xDistance, dy: yDistance)
 		sendVector()
 		reset()
 	}
 	
 	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-		guard let touchTime = self.touchTime else {
-			reset()
-			return
-		}
-		guard CACurrentMediaTime() - touchTime > 0.05 else {
-			reset()
-			return
-		}
+//		guard let touchTime = self.touchTime else {
+//			reset()
+//			return
+//		}
+//		guard CACurrentMediaTime() - touchTime > 0.05 else {
+//			reset()
+//			return
+//		}
 		vector = CGVector(dx: xDistance, dy: yDistance)
 		sendVector()
 		reset()
