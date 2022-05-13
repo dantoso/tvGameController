@@ -23,7 +23,12 @@ extension ControlVC: MCSessionDelegate {
 	}
 	
 	func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-		print("I GOT IIITTT")
+		guard let color = try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: data) else {return}
+		
+		DispatchQueue.main.async { [weak self] in
+			self?.scene.backgroundColor = color
+		}
+		
 	}
 	
 	func joinSession() {

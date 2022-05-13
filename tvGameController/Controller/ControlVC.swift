@@ -7,6 +7,7 @@ class ControlVC: UIViewController {
 	var id: MCPeerID!
 	var mcSession: MCSession!
 	lazy var advertiser = MCAdvertiserAssistant(serviceType: "mdv-hm", discoveryInfo: nil, session: mcSession)
+	lazy var scene = SKScene(size: view.bounds.size)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -17,7 +18,6 @@ class ControlVC: UIViewController {
 		
 		view = SKView(frame: view.bounds)
 		
-		let scene = SKScene(size: view.bounds.size)
 		scene.scaleMode = .aspectFill
 		scene.addChild(Joystick(rect: scene.frame, vc: self))
 		
