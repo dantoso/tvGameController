@@ -4,9 +4,10 @@ import SpriteKit
 
 class ControlVC: UIViewController {
 
-	var id: MCPeerID!
-	var mcSession: MCSession!
+	lazy var id = MCPeerID(displayName: UIDevice.current.name)
+	lazy var mcSession = MCSession(peer: id, securityIdentity: nil, encryptionPreference: .required)
 	lazy var advertiser = MCAdvertiserAssistant(serviceType: "mdv-hm", discoveryInfo: nil, session: mcSession)
+	
 	lazy var scene = SKScene(size: view.bounds.size)
 	
 	override func viewDidLoad() {
@@ -37,8 +38,7 @@ class ControlVC: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		if mcSession.connectedPeers.count < 1 {
-			advertiser.start()
-			joinSession()
+			lookForSession()
 		}
 	}
 

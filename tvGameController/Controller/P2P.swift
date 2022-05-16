@@ -9,12 +9,15 @@ extension ControlVC: MCSessionDelegate {
 			print("\(peerID.displayName): Disconnected")
 			
 		case .connecting:
-			if session.connectedPeers.count == 3 {
-				session.cancelConnectPeer(peerID)
-			}
 			print("\(peerID.displayName): Connecting...")
 			
+			if mcSession.connectedPeers.count > 2 {
+				print("\(peerID.displayName): Cancelling connection...")
+				mcSession.cancelConnectPeer(peerID)
+			}
+			
 		case .connected:
+			advertiser.stop()
 			print("\(peerID.displayName): Connected!")
 			
 		@unknown default:
@@ -31,7 +34,8 @@ extension ControlVC: MCSessionDelegate {
 		
 	}
 	
-	func joinSession() {
+	func lookForSession() {
+		advertiser.start()
 		let mcBrowser = MCBrowserViewController(serviceType: "mdv-hm", session: mcSession)
 		mcBrowser.delegate = self
 		present(mcBrowser, animated: true)
