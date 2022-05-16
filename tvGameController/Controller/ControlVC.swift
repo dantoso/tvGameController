@@ -1,4 +1,3 @@
-import UIKit
 import MultipeerConnectivity
 import SpriteKit
 
