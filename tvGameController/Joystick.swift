@@ -17,6 +17,8 @@ final class Joystick: SKNode {
 	let maxLimit: CGFloat = 250
 	let minLimit: CGFloat = 5
 
+	let timeLimit: CFTimeInterval = 0.0001
+	
 	weak var vc: ControlVC!
 	
 	///Define o tamanho da área em que o joystick percebe toques
@@ -75,7 +77,7 @@ final class Joystick: SKNode {
 		guard let touch = touches.first,
 		let touchTime = self.touchTime else {return}
 		
-		guard CACurrentMediaTime() - touchTime > 0.0001 else {return}
+		guard CACurrentMediaTime() - touchTime > timeLimit else {return}
 		
 		touchLocation = touch.location(in: self)
 		vector = CGVector(dx: xDistance, dy: yDistance)
@@ -85,28 +87,28 @@ final class Joystick: SKNode {
 	}
 	
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//		guard let touchTime = self.touchTime else {
-//			reset()
-//			return
-//		}
-//		guard CACurrentMediaTime() - touchTime > 0.05 else {
-//			reset()
-//			return
-//		}
+		guard let touchTime = self.touchTime else {
+			reset()
+			return
+		}
+		guard CACurrentMediaTime() - touchTime > timeLimit else {
+			reset()
+			return
+		}
 		vector = CGVector(dx: xDistance, dy: yDistance)
 		sendVector()
 		reset()
 	}
 	
 	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-//		guard let touchTime = self.touchTime else {
-//			reset()
-//			return
-//		}
-//		guard CACurrentMediaTime() - touchTime > 0.05 else {
-//			reset()
-//			return
-//		}
+		guard let touchTime = self.touchTime else {
+			reset()
+			return
+		}
+		guard CACurrentMediaTime() - touchTime > timeLimit else {
+			reset()
+			return
+		}
 		vector = CGVector(dx: xDistance, dy: yDistance)
 		sendVector()
 		reset()
