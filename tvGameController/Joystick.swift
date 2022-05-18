@@ -17,7 +17,7 @@ final class Joystick: SKNode {
 	let maxLimit: CGFloat = 250
 	let minLimit: CGFloat = 5
 
-	let timeLimit: CFTimeInterval = 0.0001
+	let timeLimit: CFTimeInterval = CFTimeInterval(0.0001)
 	
 	weak var vc: ControlVC!
 	
@@ -87,28 +87,28 @@ final class Joystick: SKNode {
 	}
 	
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		guard let touchTime = self.touchTime else {
-			reset()
-			return
-		}
-		guard CACurrentMediaTime() - touchTime > timeLimit else {
-			reset()
-			return
-		}
+//		guard let touchTime = self.touchTime else {
+//			reset()
+//			return
+//		}
+//		guard CACurrentMediaTime() - touchTime > timeLimit else {
+//			reset()
+//			return
+//		}
 		vector = CGVector(dx: xDistance, dy: yDistance)
 		sendVector()
 		reset()
 	}
 	
 	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-		guard let touchTime = self.touchTime else {
-			reset()
-			return
-		}
-		guard CACurrentMediaTime() - touchTime > timeLimit else {
-			reset()
-			return
-		}
+//		guard let touchTime = self.touchTime else {
+//			reset()
+//			return
+//		}
+//		guard CACurrentMediaTime() - touchTime > timeLimit else {
+//			reset()
+//			return
+//		}
 		vector = CGVector(dx: xDistance, dy: yDistance)
 		sendVector()
 		reset()
