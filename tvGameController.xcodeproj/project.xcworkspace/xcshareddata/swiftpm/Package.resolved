@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "swiftp2pconnector",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dantoso/SwiftP2PConnector",
+      "state" : {
+        "branch" : "main",
+        "revision" : "49a8f2f9803283577069066965077a176c60b98f"
+      }
+    }
+  ],
+  "version" : 2
+}

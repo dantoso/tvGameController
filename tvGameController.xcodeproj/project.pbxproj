@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB7DD4B12999971100FD0675 /* SwiftP2PConnector in Frameworks */ = {isa = PBXBuildFile; productRef = FB7DD4B02999971100FD0675 /* SwiftP2PConnector */; };
+		FB7DD4B32999A13500FD0675 /* CommandKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7DD4B22999A13500FD0675 /* CommandKeys.swift */; };
+		FB7DD4B52999A3C600FD0675 /* ChangeColorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7DD4B42999A3C600FD0675 /* ChangeColorCommand.swift */; };
 		FBF82B7E282D743900F7FA05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF82B7D282D743900F7FA05 /* AppDelegate.swift */; };
 		FBF82B80282D743900F7FA05 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF82B7F282D743900F7FA05 /* SceneDelegate.swift */; };
 		FBF82B82282D743900F7FA05 /* ControlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF82B81282D743900F7FA05 /* ControlVC.swift */; };
@@ -17,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FB7DD4B22999A13500FD0675 /* CommandKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandKeys.swift; sourceTree = "<group>"; };
+		FB7DD4B42999A3C600FD0675 /* ChangeColorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeColorCommand.swift; sourceTree = "<group>"; };
 		FBF82B7A282D743900F7FA05 /* tvGameController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvGameController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF82B7D282D743900F7FA05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBF82B7F282D743900F7FA05 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB7DD4B12999971100FD0675 /* SwiftP2PConnector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +80,8 @@
 			children = (
 				FBF82B81282D743900F7FA05 /* ControlVC.swift */,
 				FBF82B93282D7A4000F7FA05 /* P2P.swift */,
+				FB7DD4B22999A13500FD0675 /* CommandKeys.swift */,
+				FB7DD4B42999A3C600FD0675 /* ChangeColorCommand.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -94,6 +102,9 @@
 			dependencies = (
 			);
 			name = tvGameController;
+			packageProductDependencies = (
+				FB7DD4B02999971100FD0675 /* SwiftP2PConnector */,
+			);
 			productName = tvGameController;
 			productReference = FBF82B7A282D743900F7FA05 /* tvGameController.app */;
 			productType = "com.apple.product-type.application";
@@ -122,6 +133,9 @@
 				Base,
 			);
 			mainGroup = FBF82B71282D743900F7FA05;
+			packageReferences = (
+				FB7DD4AF2999971100FD0675 /* XCRemoteSwiftPackageReference "SwiftP2PConnector" */,
+			);
 			productRefGroup = FBF82B7B282D743900F7FA05 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -150,9 +164,11 @@
 			files = (
 				FBF82B94282D7A4000F7FA05 /* P2P.swift in Sources */,
 				FBF82B82282D743900F7FA05 /* ControlVC.swift in Sources */,
+				FB7DD4B52999A3C600FD0675 /* ChangeColorCommand.swift in Sources */,
 				FBF82B92282D784C00F7FA05 /* Joystick.swift in Sources */,
 				FBF82B7E282D743900F7FA05 /* AppDelegate.swift in Sources */,
 				FBF82B80282D743900F7FA05 /* SceneDelegate.swift in Sources */,
+				FB7DD4B32999A13500FD0675 /* CommandKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +380,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FB7DD4AF2999971100FD0675 /* XCRemoteSwiftPackageReference "SwiftP2PConnector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dantoso/SwiftP2PConnector";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FB7DD4B02999971100FD0675 /* SwiftP2PConnector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB7DD4AF2999971100FD0675 /* XCRemoteSwiftPackageReference "SwiftP2PConnector" */;
+			productName = SwiftP2PConnector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FBF82B72282D743900F7FA05 /* Project object */;
 }
