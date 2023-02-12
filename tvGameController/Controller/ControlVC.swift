@@ -1,21 +1,23 @@
 import MultipeerConnectivity
 import SpriteKit
+import SwiftP2PConnector
 
-class ControlVC: UIViewController {
+class ControlVC: UIViewController, ReceiveDelegate {
 
-	lazy var id = MCPeerID(displayName: UIDevice.current.name)
-	lazy var mcSession = MCSession(peer: id, securityIdentity: nil, encryptionPreference: .required)
-	lazy var advertiser = MCAdvertiserAssistant(serviceType: "mdv-hm", discoveryInfo: nil, session: mcSession)
-	
 	lazy var scene = SKScene(size: view.bounds.size)
+	var gameID: MCPeerID? = nil
+	lazy var commandDictionary: [String: Command] = [CommandKeys.changeColorToGreen.rawValue:
+														ChangeColorCommand(scene: scene, color: .green),
+													 CommandKeys.changeColorToPurple.rawValue:
+														ChangeColorCommand(scene: scene, color: .purple)]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		id = MCPeerID(displayName: UIDevice.current.name)
-		mcSession = MCSession(peer: id, securityIdentity: nil, encryptionPreference: .required)
-		mcSession.delegate = self
-		
+
+		P2PConnector.peerBrowserVCDelegate = self
+		P2PConnector.receiveDelegate = self
+		P2PConnector.connectionDelegate = self
+
 		view = SKView(frame: view.bounds)
 		
 		scene.scaleMode = .aspectFill
@@ -36,11 +38,21 @@ class ControlVC: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		if mcSession.connectedPeers.count < 1 {
+		if P2PConnector.connectedPeers.count < 1 {
 			lookForSession()
 		}
 	}
 
+	func didReceiveData(_ data: Data, from peerID: MCPeerID) {
+		guard let color = try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: data) else {return}
 
+		DispatchQueue.main.async { [weak self] in
+			self?.scene.backgroundColor = color
+		}
+	}
+
+	func sendData(_ data: Data) {
+		guard let gameID else {return}
+		P2PConnector.sendData(data, to: [gameID])
+	}
 }
-
