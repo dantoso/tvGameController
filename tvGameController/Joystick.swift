@@ -17,22 +17,21 @@ final class Joystick: SKNode {
 	let maxLimit: CGFloat = 250
 	let minLimit: CGFloat = 5
 
-	let timeLimit: CFTimeInterval = CFTimeInterval(0.0001)
-	
+	let timeLimit: CFTimeInterval = CFTimeInterval(0.01)
+	var touchTime: CFTimeInterval?
+
 	weak var vc: ControlVC!
-	
+
 	///Define o tamanho da área em que o joystick percebe toques
 	private var touchableArea: SKShapeNode!
-	
+
 	///Referencial para o centro do joystick.
 	///Esse ponto é usado como referência para todo o funcionamento do joystick
 	private var center: CGPoint?
-	
+
 	///Ponto onde o usuário está pressionando, atualizado em tempo real
 	private var touchLocation: CGPoint?
-	
-	var touchTime: CFTimeInterval?
-	
+
 	///Get-only-property: distância entre center e touchLocation no eixo X
 	///caso um dos dois não existam, retorna 0
 	private var xDistance: CGFloat {
@@ -74,16 +73,18 @@ final class Joystick: SKNode {
 	}
 	
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-		guard let touch = touches.first,
-		let touchTime = self.touchTime else {return}
-		
-		guard CACurrentMediaTime() - touchTime > timeLimit else {return}
-		
+		guard
+			let touch = touches.first,
+			let touchTime = self.touchTime
+		else {return}
 		touchLocation = touch.location(in: self)
 		vector = CGVector(dx: xDistance, dy: yDistance)
-		center = touchLocation
-		sendVector()
+
+		guard CACurrentMediaTime() - touchTime > timeLimit else {return}
+
 		self.touchTime = CACurrentMediaTime()
+		sendVector()
+		center = touchLocation
 	}
 	
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
