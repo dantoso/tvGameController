@@ -4,12 +4,12 @@ import SwiftP2PConnector
 
 class ControlVC: UIViewController, ReceiveDelegate {
 
-	lazy var scene = SKScene(size: view.bounds.size)
 	var gameID: MCPeerID? = nil
+	lazy var scene = SKScene(size: view.bounds.size)
 	lazy var commandDictionary: [String: Command] = [CommandKeys.changeColorToGreen.rawValue:
-														ChangeColorCommand(scene: scene, color: .green),
+														ChangeColorCommand(scene: scene, color: .systemGreen),
 													 CommandKeys.changeColorToPurple.rawValue:
-														ChangeColorCommand(scene: scene, color: .purple)]
+														ChangeColorCommand(scene: scene, color: .systemPurple)]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
