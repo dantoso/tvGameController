@@ -38,7 +38,7 @@ class ControlVC: UIViewController, ReceiveDelegate {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		if P2PConnector.connectedPeers.count < 1 {
+		if gameID == nil {
 			lookForSession()
 		}
 	}
