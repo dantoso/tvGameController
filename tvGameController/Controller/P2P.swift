@@ -14,6 +14,7 @@ extension ControlVC: ConnectionDelegate {
 
 	func didConnect(to peerID: MCPeerID) {
 		gameID = peerID
+		shouldPing = true
 		print("\(peerID.displayName): Connected!")
 	}
 }

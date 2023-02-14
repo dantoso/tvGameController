@@ -130,7 +130,6 @@ extension Joystick {
 	func sendVector() {
 		let string = NSCoder.string(for: vector)
 		let data = Data(string.utf8)
-		print("vector encoding successful!!")
 		vc.sendData(data)
 	}
 	

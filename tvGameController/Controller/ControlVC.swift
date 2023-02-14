@@ -5,6 +5,14 @@ import SwiftP2PConnector
 class ControlVC: UIViewController, ReceiveDelegate {
 
 	var gameID: MCPeerID? = nil
+	var shouldPing = false {
+		didSet {
+			if shouldPing {
+				ping()
+			}
+		}
+	}
+
 	lazy var scene = SKScene(size: view.bounds.size)
 	lazy var commandDictionary: [String: Command] = [CommandKeys.changeColorToGreen.rawValue:
 														ChangeColorCommand(scene: scene, color: .systemGreen),
@@ -54,5 +62,14 @@ class ControlVC: UIViewController, ReceiveDelegate {
 	func sendData(_ data: Data) {
 		guard let gameID else {return}
 		P2PConnector.sendData(data, to: [gameID])
+	}
+
+	func ping() {
+		guard let gameID, shouldPing else {return}
+		P2PConnector.ping(to: gameID)
+
+		DispatchQueue.global(qos: .utility).asyncAfter(deadline: .now() + 1) { [weak self] in
+			self?.ping()
+		}
 	}
 }
